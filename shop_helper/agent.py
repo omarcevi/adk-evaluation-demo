@@ -40,7 +40,9 @@ ORDERS = {
 
 
 def _clean_order_id(order_id: str) -> str:
-    return order_id.strip()
+    # Customers write "#1001", "1001" or "ord-1001". Our IDs look like "ORD-1001".
+    number = order_id.strip().upper().removeprefix("#").removeprefix("ORD-")
+    return f"ORD-{number}"
 
 
 def _not_found(order_id: str) -> dict:

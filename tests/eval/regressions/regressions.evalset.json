@@ -1,0 +1,140 @@
+{
+  "eval_set_id": "regressions",
+  "name": "Regressions found in production",
+  "eval_cases": [
+    {
+      "eval_id": "session_630764703886344192",
+      "conversation": [
+        {
+          "invocation_id": "e-225482bd-80d6-4ef3-909d-bee9773dcf73",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Where is my order #1001?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "I couldn't find an order with the ID #1001. Please double-check your order number and try again.",
+                "thought_signature": "AY89a1-1YkVukWT9eTCiGnjfCA5vxSr3fnobNaFNllThgc_bcORGxecdF8FeKWF9hf60Y79eUl8tBoPMBf5YLqVNiX4oFaqYgxM-2_2IuG2sasKEYA7fOJwWvjKrMgoAdO3t3fRZcNOU3Tv85BAdNXe6RR4k5WEsyHGc_W04Ce8viIhfA2DaV2VL512G9U3k6402uRLQM0akGnMiZ2gmxvkyijpzqZIwZ4kenjOYOTUZa4Qgzgc7vyfcBQad_hvgVCzU9sr7uzBdvet1JLEbuFegXo0AG0JOyirMPtlJ-j5uVFhaiiS0scARiqs3wPvNxv8BdFsP2IRgnwsaImTVMi_YXlQLWJf41ES-JfCkbX0VEquCEzJ3iL_dwOMCta4IaDEQwbUoIT9mSK9GzQgrCUoU8w6Z"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "shop_helper",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "call_537779",
+                        "args": {
+                          "order_id": "1001"
+                        },
+                        "name": "get_order_status"
+                      },
+                      "thought_signature": "AY89a1_-8-GSmsZ7gAZgQrBfGKZadCIgxtdIJK1KO4gI7xTsl58gXTKGtCkGurUh84WGKUrTyGQPWdDJlricQJDmc57xifF6vMcBJ-DRN7xow5dm4Ao-bSlmaXxYMaJ0iy51IX8GIhHD7yFYqAKHwwKoFCRkfU70bqnawEPu-b925Ks-3LjZhg897S6NcXdTt3RDUdbw6RQnHUpC4UjX9DGJqE1cDfNiZzLCaGED6a6xIpzIiI6H0FKcrTzM_WoToSAhXDbuSNl8Xi1xmJf7N6BzsQbajrDfdTMj7ZoQKmyT0ak71lcnL8th5vxt5Bd9KimiWk_z_YIkqtQiuUf8iKg189LTPOlzY54L1W40APL4NF3nFUlGozzkYHfrdNJC44c3QYfodTadHCejCIM6akKx1v45lTt0kVIFpDdXDGEpZr7M6tMhz1AsLzBrqv6wsDRTQQhvQlfgELLkBh1v2RmEAwqiGwwgD_u683pCYm3-OUnDzYw8ZO0bOGuIwSUDgLIdMhdA_JlkLEUdw2rYdE1UqvUNcVVBfbg8UTNQSkf7FpF6Q-hAiinOCZlCcejan2ZNEb9Os3OIDqFF58OEecLYiFsoF9VYg4X4-fqGL49XWSmUJwHvx2yEUYrvsopGyCtOIHMoMmv2MuR1dbPX29PiQPQxulbVdhWIPAaddzflnVCsHbPsKjgHv2lBSyfKg_gmxojE5iQ6JHZUtB4Va_1fgu0biu6oe2wcoo0bs8M2Pqvc-Skels3WZ8KryRMhto6BvcdX7iBPCBg91OjEdpBRIgSXX_Ah1wPUdvJI57MbJbwgUis1JYOqupscIr2cGHkeEkBkUNK1"
+                    },
+                    {
+                      "function_call": {
+                        "id": "call_537780",
+                        "args": {
+                          "order_id": "1001"
+                        },
+                        "name": "get_shipping_eta"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                },
+                "usage_metadata": {
+                  "candidates_token_count": 46,
+                  "candidates_tokens_details": [
+                    {
+                      "modality": "TEXT",
+                      "token_count": 46
+                    }
+                  ],
+                  "prompt_token_count": 510,
+                  "prompt_tokens_details": [
+                    {
+                      "modality": "TEXT",
+                      "token_count": 510
+                    }
+                  ],
+                  "thoughts_token_count": 167,
+                  "total_token_count": 723,
+                  "traffic_type": "ON_DEMAND"
+                },
+                "model_version": "gemini-3.8-flash"
+              },
+              {
+                "author": "shop_helper",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "call_537779",
+                        "name": "get_order_status",
+                        "response": {
+                          "error": "Order 1001 not found."
+                        }
+                      }
+                    },
+                    {
+                      "function_response": {
+                        "id": "call_537780",
+                        "name": "get_shipping_eta",
+                        "response": {
+                          "error": "Order 1001 not found."
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              },
+              {
+                "author": "shop_helper",
+                "usage_metadata": {
+                  "candidates_token_count": 26,
+                  "candidates_tokens_details": [
+                    {
+                      "modality": "TEXT",
+                      "token_count": 26
+                    }
+                  ],
+                  "prompt_token_count": 747,
+                  "prompt_tokens_details": [
+                    {
+                      "modality": "TEXT",
+                      "token_count": 747
+                    }
+                  ],
+                  "thoughts_token_count": 53,
+                  "total_token_count": 826,
+                  "traffic_type": "ON_DEMAND"
+                },
+                "model_version": "gemini-3.8-flash"
+              }
+            ]
+          },
+          "creation_timestamp": 1791911243.318183
+        }
+      ],
+      "session_input": {
+        "app_name": "shop_helper",
+        "user_id": "demo_user",
+        "state": {}
+      },
+      "creation_timestamp": 1791912184.763233,
+      "final_session_state": {}
+    }
+  ],
+  "creation_timestamp": 0.0
+}
