@@ -1,0 +1,78 @@
+{
+  "eval_set_id": "shop_helper_core",
+  "name": "ShopHelper core flows",
+  "description": "Static test cases: one user message, the tool calls we expect, and a reference answer.",
+  "eval_cases": [
+    {
+      "eval_id": "order_status",
+      "conversation": [
+        {
+          "invocation_id": "order_status-1",
+          "user_content": {"role": "user", "parts": [{"text": "What's the status of my order ORD-1001?"}]},
+          "final_response": {"role": "model", "parts": [{"text": "Your order ORD-1001 (a ceramic coffee mug) has been delivered."}]},
+          "intermediate_data": {
+            "tool_uses": [{"name": "get_order_status", "args": {"order_id": "ORD-1001"}}]
+          }
+        }
+      ],
+      "session_input": {"app_name": "shop_helper", "user_id": "eval_user", "state": {}}
+    },
+    {
+      "eval_id": "eligible_return",
+      "conversation": [
+        {
+          "invocation_id": "eligible_return-1",
+          "user_content": {"role": "user", "parts": [{"text": "I want to return order ORD-1001, the mug arrived damaged."}]},
+          "final_response": {"role": "model", "parts": [{"text": "I've created a return for order ORD-1001. Your return ID is RET-1001."}]},
+          "intermediate_data": {
+            "tool_uses": [
+              {"name": "check_return_eligibility", "args": {"order_id": "ORD-1001"}},
+              {"name": "create_return_request", "args": {"order_id": "ORD-1001", "reason": "damaged"}}
+            ]
+          }
+        }
+      ],
+      "session_input": {"app_name": "shop_helper", "user_id": "eval_user", "state": {}}
+    },
+    {
+      "eval_id": "ineligible_return",
+      "conversation": [
+        {
+          "invocation_id": "ineligible_return-1",
+          "user_content": {"role": "user", "parts": [{"text": "I want to return order ORD-1004, the jacket doesn't fit."}]},
+          "final_response": {"role": "model", "parts": [{"text": "Sorry, order ORD-1004 can't be returned because it is outside the 30-day return window."}]},
+          "intermediate_data": {
+            "tool_uses": [{"name": "check_return_eligibility", "args": {"order_id": "ORD-1004"}}]
+          }
+        }
+      ],
+      "session_input": {"app_name": "shop_helper", "user_id": "eval_user", "state": {}}
+    },
+    {
+      "eval_id": "shipping_eta",
+      "conversation": [
+        {
+          "invocation_id": "shipping_eta-1",
+          "user_content": {"role": "user", "parts": [{"text": "When will order ORD-1002 arrive?"}]},
+          "final_response": {"role": "model", "parts": [{"text": "Your order ORD-1002 has shipped and should arrive in 2-3 business days."}]},
+          "intermediate_data": {
+            "tool_uses": [{"name": "get_shipping_eta", "args": {"order_id": "ORD-1002"}}]
+          }
+        }
+      ],
+      "session_input": {"app_name": "shop_helper", "user_id": "eval_user", "state": {}}
+    },
+    {
+      "eval_id": "off_topic",
+      "conversation": [
+        {
+          "invocation_id": "off_topic-1",
+          "user_content": {"role": "user", "parts": [{"text": "Hi! Can you recommend a good pizza place nearby?"}]},
+          "final_response": {"role": "model", "parts": [{"text": "Sorry, I can only help with your orders, like order status, returns and shipping times."}]},
+          "intermediate_data": {"tool_uses": []}
+        }
+      ],
+      "session_input": {"app_name": "shop_helper", "user_id": "eval_user", "state": {}}
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "rubric_based_final_response_quality_v1": {
+      "threshold": 1.0,
+      "judge_model_options": {
+        "judge_model": "gemini-3.8-flash",
+        "num_samples": 3
+      },
+      "rubrics": [
+        {
+          "rubric_id": "finds_the_order",
+          "rubric_content": {
+            "text_property": "The agent finds the customer's order and answers their question about it. It does not say that the order could not be found or does not exist."
+          }
+        }
+      ]
+    }
+  }
+}

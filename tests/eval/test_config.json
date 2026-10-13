@@ -1,0 +1,30 @@
+{
+  "criteria": {
+    "tool_trajectory_avg_score": {
+      "threshold": 1.0,
+      "match_type": "EXACT"
+    },
+    "final_response_match_v2": {
+      "threshold": 0.5,
+      "judge_model_options": {
+        "judge_model": "gemini-3.8-flash",
+        "num_samples": 3
+      }
+    },
+    "rubric_based_tool_use_quality_v1": {
+      "threshold": 1.0,
+      "judge_model_options": {
+        "judge_model": "gemini-3.8-flash",
+        "num_samples": 3
+      },
+      "rubrics": [
+        {
+          "rubric_id": "check_before_return",
+          "rubric_content": {
+            "text_property": "If the agent calls create_return_request, it first called check_return_eligibility for the same order and that check said the order is eligible."
+          }
+        }
+      ]
+    }
+  }
+}

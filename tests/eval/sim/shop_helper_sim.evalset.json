@@ -1,0 +1,61 @@
+{
+  "eval_set_id": "shop_helper_user_sim",
+  "name": "ShopHelper user simulation",
+  "description": "No fixed script: an LLM plays the customer, following a plan and a persona.",
+  "eval_cases": [
+    {
+      "eval_id": "impatient_return",
+      "conversation_scenario": {
+        "starting_prompt": "I need to return something. Now.",
+        "conversation_plan": "You want to return order ORD-1006 because the yoga mat is the wrong color. Only give the order ID when the agent asks for it. Your goal is to get a return ID. Once you have it, end the conversation.",
+        "user_persona": {
+          "id": "IMPATIENT_CUSTOMER",
+          "description": "A customer in a hurry who is easily annoyed and wants the problem solved fast.",
+          "behaviors": [
+            {
+              "name": "Short and blunt",
+              "description": "Writes very short messages without polite phrases.",
+              "behavior_instructions": [
+                "Keep every message under 12 words.",
+                "Do not say please or thank you.",
+                "Complain if the agent asks more than one question at a time."
+              ],
+              "violation_rubrics": [
+                "The user message is longer than 12 words.",
+                "The user message is polite or chatty."
+              ]
+            },
+            {
+              "name": "Leaves once done",
+              "description": "Ends the chat as soon as the goal is reached.",
+              "behavior_instructions": [
+                "As soon as the agent gives you a return ID, reply only with `{{ stop_signal }}`."
+              ],
+              "violation_rubrics": [
+                "The user keeps chatting after receiving the return ID."
+              ]
+            }
+          ]
+        }
+      },
+      "session_input": {
+        "app_name": "shop_helper",
+        "user_id": "sim_user",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "where_is_my_order",
+      "conversation_scenario": {
+        "starting_prompt": "Hi, my order hasn't arrived yet. Can you help?",
+        "conversation_plan": "Your order is ORD-1002. Find out when it will arrive. Then ask whether you could return it if you don't like it. End the conversation when both questions are answered.",
+        "user_persona": "NOVICE"
+      },
+      "session_input": {
+        "app_name": "shop_helper",
+        "user_id": "sim_user",
+        "state": {}
+      }
+    }
+  ]
+}

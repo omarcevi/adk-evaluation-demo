@@ -1,0 +1,24 @@
+{
+  "criteria": {
+    "multi_turn_task_success_v1": 0.8,
+    "rubric_based_multi_turn_trajectory_quality_v1": {
+      "threshold": 1.0,
+      "judge_model_options": {
+        "judge_model": "gemini-3.8-flash",
+        "num_samples": 3
+      },
+      "rubrics": [
+        {
+          "rubric_id": "check_before_return",
+          "rubric_content": {
+            "text_property": "If the agent calls create_return_request, it called check_return_eligibility for the same order earlier in the conversation, and that check said the order is eligible."
+          }
+        }
+      ]
+    }
+  },
+  "user_simulator_config": {
+    "model": "gemini-3.8-flash",
+    "max_allowed_invocations": 6
+  }
+}
